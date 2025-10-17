@@ -24,7 +24,7 @@ export const useAuthStore = defineStore('auth', () => {
       }
 
       // 监听认证状态变化
-      supabase.auth.onAuthStateChange(async (event, session) => {
+      supabase.auth.onAuthStateChange(async (_event, session) => {
         user.value = session?.user || null
         if (session?.user) {
           await fetchProfile()
@@ -99,7 +99,7 @@ export const useAuthStore = defineStore('auth', () => {
       if (authError) throw authError
       if (!authData.user) throw new Error('注册失败')
 
-      // 2. 创建用户资料
+      // 2. 手动创建用户资料
       const { error: profileError } = await supabase
         .from('profiles')
         .insert({

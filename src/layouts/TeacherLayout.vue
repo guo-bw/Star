@@ -15,9 +15,25 @@
           <el-icon><UserFilled /></el-icon>
           <span>学生管理</span>
         </el-menu-item>
+        <el-menu-item index="/teacher/classes">
+          <el-icon><School /></el-icon>
+          <span>班级管理</span>
+        </el-menu-item>
         <el-menu-item index="/teacher/courses">
           <el-icon><Reading /></el-icon>
           <span>课程管理</span>
+        </el-menu-item>
+        <el-menu-item index="/teacher/assignments">
+          <el-icon><Document /></el-icon>
+          <span>作业管理</span>
+        </el-menu-item>
+        <el-menu-item index="/teacher/grades">
+          <el-icon><Medal /></el-icon>
+          <span>成绩管理</span>
+        </el-menu-item>
+        <el-menu-item index="/teacher/exams">
+          <el-icon><Timer /></el-icon>
+          <span>考试安排</span>
         </el-menu-item>
         <el-menu-item index="/teacher/knowledge">
           <el-icon><FolderOpened /></el-icon>
@@ -68,7 +84,11 @@ import {
   UserFilled,
   Reading,
   FolderOpened,
-  User
+  User,
+  School,
+  Document,
+  Medal,
+  Timer
 } from '@element-plus/icons-vue'
 
 const route = useRoute()

@@ -41,7 +41,7 @@
           </template>
         </el-table-column>
         <el-table-column label="操作" width="120">
-          <template #default="{ row }">
+          <template #default>
             <el-button
               link
               type="primary"
@@ -82,7 +82,7 @@ import { useRouter } from 'vue-router'
 import { supabase } from '@/utils/supabase'
 import { useAuthStore } from '@/stores/auth'
 import dayjs from 'dayjs'
-import type { Assignment, Exam, AssignmentSubmission } from '@/types'
+import type { Assignment, Exam } from '@/types'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -132,7 +132,7 @@ const fetchStats = async () => {
   }
 
   // 获取待交作业数
-  const { data: submissions, count } = await supabase
+  const { count } = await supabase
     .from('assignment_submissions')
     .select('*', { count: 'exact' })
     .eq('student_id', userId)

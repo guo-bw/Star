@@ -105,7 +105,7 @@ const form = reactive({
   confirmPassword: ''
 })
 
-const validatePass2 = (rule: any, value: string, callback: any) => {
+const validatePass2 = (_rule: any, value: string, callback: any) => {
   if (value === '') {
     callback(new Error('请再次输入密码'))
   } else if (value !== form.password) {
@@ -127,7 +127,7 @@ const rules: FormRules = {
       required: true,
       message: '请输入学号',
       trigger: 'blur',
-      validator: (rule: any, value: string, callback: any) => {
+      validator: (_rule: any, value: string, callback: any) => {
         if (form.role === 'student' && !value) {
           callback(new Error('请输入学号'))
         } else {

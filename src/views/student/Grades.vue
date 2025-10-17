@@ -99,7 +99,7 @@ const fetchGrades = async () => {
 
 const getScoreType = (score: number) => {
   if (score >= 90) return 'success'
-  if (score >= 80) return ''
+  if (score >= 80) return undefined
   if (score >= 60) return 'warning'
   return 'danger'
 }

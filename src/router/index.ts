@@ -45,6 +45,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/student/Assignments.vue')
       },
       {
+        path: 'exams',
+        name: 'StudentExams',
+        component: () => import('@/views/student/Exams.vue')
+      },
+      {
         path: 'profile',
         name: 'StudentProfile',
         component: () => import('@/views/student/Profile.vue')
@@ -76,6 +81,26 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/teacher/Courses.vue')
       },
       {
+        path: 'classes',
+        name: 'TeacherClasses',
+        component: () => import('@/views/teacher/Classes.vue')
+      },
+      {
+        path: 'assignments',
+        name: 'TeacherAssignments',
+        component: () => import('@/views/teacher/Assignments.vue')
+      },
+      {
+        path: 'grades',
+        name: 'TeacherGrades',
+        component: () => import('@/views/teacher/Grades.vue')
+      },
+      {
+        path: 'exams',
+        name: 'TeacherExams',
+        component: () => import('@/views/teacher/Exams.vue')
+      },
+      {
         path: 'knowledge',
         name: 'KnowledgeManagement',
         component: () => import('@/views/teacher/Knowledge.vue')
@@ -89,7 +114,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/',
-    redirect: (to) => {
+    redirect: () => {
       const authStore = useAuthStore()
       if (authStore.isStudent) return '/student'
       if (authStore.isTeacher) return '/teacher'
@@ -108,9 +133,19 @@ const router = createRouter({
   routes
 })
 
+// 认证状态初始化标志
+let authInitialized = false
+
 // 路由守卫
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, _from, next) => {
   const authStore = useAuthStore()
+
+  // 首次访问时，等待认证状态初始化
+  if (!authInitialized) {
+    await authStore.initialize()
+    authInitialized = true
+  }
+
   const requiresAuth = to.meta.requiresAuth !== false
   const requiredRole = to.meta.role as string | undefined
 

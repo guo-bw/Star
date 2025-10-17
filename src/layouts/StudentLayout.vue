@@ -27,6 +27,10 @@
           <el-icon><EditPen /></el-icon>
           <span>作业提交</span>
         </el-menu-item>
+        <el-menu-item index="/student/exams">
+          <el-icon><Timer /></el-icon>
+          <span>考试安排</span>
+        </el-menu-item>
         <el-menu-item index="/student/profile">
           <el-icon><User /></el-icon>
           <span>个人资料</span>
@@ -73,7 +77,8 @@ import {
   ChatDotRound,
   Document,
   EditPen,
-  User
+  User,
+  Timer
 } from '@element-plus/icons-vue'
 
 const route = useRoute()

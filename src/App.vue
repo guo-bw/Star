@@ -3,15 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { useAuthStore } from '@/stores/auth'
-
-const authStore = useAuthStore()
-
-onMounted(() => {
-  // 初始化认证状态
-  authStore.initialize()
-})
+// 认证状态初始化已移至路由守卫中处理
+// 确保在路由导航前完成初始化，避免刷新时被踢回登录页
 </script>
 
 <style>
